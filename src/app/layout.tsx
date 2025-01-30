@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import "./globals.css";
+import { Archivo } from "next/font/google";
 
-import {Archivo} from "next/font/google";
+import "./globals.css";
 
 const archivo = Archivo({
   display: "swap",
@@ -22,7 +22,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`antialiased bg-stone-200 text-stone-900 ${archivo.variable} font-sans`}>{children}</body>
+      <body
+        className={`bg-stone-200 text-stone-900 antialiased ${archivo.variable} font-sans`}
+      >
+        {children}
+      </body>
     </html>
   );
 }
