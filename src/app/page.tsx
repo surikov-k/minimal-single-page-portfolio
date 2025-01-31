@@ -1,12 +1,11 @@
 import Header from "@/sections/Header";
+import Hero from "@/sections/Hero";
 
 export default function Home() {
   return (
     <>
       <Header />
-      <h1 className="text-5xl">
-        Crafting digital experiences through code and creative design
-      </h1>
+      <Hero />
     </>
   );
 }
