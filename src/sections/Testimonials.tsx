@@ -41,6 +41,16 @@ const testimonials = [
 const Testimonials: FC = () => {
   const [testimonialIndex, setTestimonialIndex] = useState(0);
 
+  const handleLeftButtonClick = () => {
+    setTestimonialIndex(
+      (testimonialIndex - 1 + testimonials.length) % testimonials.length
+    );
+  };
+
+  const handleRightButtonClick = () => {
+    setTestimonialIndex((testimonialIndex + 1) % testimonials.length);
+  };
+
   return (
     <section className="section">
       <h2 className="flex flex-col overflow-x-clip text-4xl tracking-tighter md:text-7xl lg:text-8xl">
@@ -83,7 +93,10 @@ const Testimonials: FC = () => {
           )}
         </div>
         <div className="mt-6 flex gap-4 lg:mt-10">
-          <button className="inline-flex size-11 items-center justify-center rounded-full border border-stone-400">
+          <button
+            className="inline-flex size-11 items-center justify-center rounded-full border border-stone-400"
+            onClick={handleLeftButtonClick}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -99,7 +112,10 @@ const Testimonials: FC = () => {
               />
             </svg>
           </button>
-          <button className="inline-flex size-11 items-center justify-center rounded-full border border-stone-400">
+          <button
+            className="inline-flex size-11 items-center justify-center rounded-full border border-stone-400"
+            onClick={handleRightButtonClick}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
