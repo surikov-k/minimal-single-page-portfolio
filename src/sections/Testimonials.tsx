@@ -52,7 +52,7 @@ const Testimonials: FC = () => {
   };
 
   return (
-    <section className="section">
+    <section id="testimonials" className="section">
       <h2 className="flex flex-col overflow-x-clip text-4xl tracking-tighter md:text-7xl lg:text-8xl">
         <span className="whitespace-nowrap">
           Some nice words from my past clients{" "}
