@@ -40,28 +40,40 @@ const Hero: FC = () => {
               Crafting digital experiences through code and creative design
             </motion.h1>
             <div className="mt-10 flex flex-col items-start gap-6 md:flex-row md:items-center">
-              <Button
-                variant="secondary"
-                iconAfter={
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.5"
-                    stroke="currentColor"
-                    className="size-5"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="m4.5 5.25 7.5 7.5 7.5-7.5m-15 6 7.5 7.5 7.5-7.5"
-                    />
-                  </svg>
-                }
+              <motion.div
+                initial={{ opacity: 0, y: "100%" }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 1.75 }}
               >
-                <span>View my work</span>
-              </Button>
-              <Button variant="text">Let&apos;s talk</Button>
+                <Button
+                  variant="secondary"
+                  iconAfter={
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth="1.5"
+                      stroke="currentColor"
+                      className="size-5"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="m4.5 5.25 7.5 7.5 7.5-7.5m-15 6 7.5 7.5 7.5-7.5"
+                      />
+                    </svg>
+                  }
+                >
+                  <span>View my work</span>
+                </Button>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: "100%" }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 2.3 }}
+              >
+                <Button variant="text">Let&apos;s talk</Button>
+              </motion.div>
             </div>
           </div>
         </div>
