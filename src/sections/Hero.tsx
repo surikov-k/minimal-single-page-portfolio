@@ -1,19 +1,44 @@
+"use client";
+
 import Image from "next/image";
-import { FC } from "react";
+import { FC, useEffect } from "react";
+
+import { motion, stagger, useAnimate } from "motion/react";
+import SplitType from "split-type";
 
 /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
 import heroImage from "@/assets/images/hero-image.jpg";
 import Button from "@/components/Button";
 
 const Hero: FC = () => {
+  const [titleScope, titleAnimate] = useAnimate();
+  useEffect(() => {
+    new SplitType(titleScope.current, {
+      types: "lines,words",
+      tagName: "span",
+    });
+    titleAnimate(
+      titleScope.current.querySelectorAll(".word"),
+      {
+        translate: "0",
+      },
+      { duration: 0.5, delay: stagger(0.2) }
+    );
+  }, []);
+
   return (
     <section>
       <div className="grid items-stretch md:h-screen md:grid-cols-12">
         <div className="flex flex-col justify-center md:col-span-7">
           <div className="container !max-w-full">
-            <h1 className="mt-40 text-5xl md:mt-0 md:text-6xl lg:text-7xl">
+            <motion.h1
+              ref={titleScope}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="mt-40 text-5xl md:mt-0 md:text-6xl lg:text-7xl"
+            >
               Crafting digital experiences through code and creative design
-            </h1>
+            </motion.h1>
             <div className="mt-10 flex flex-col items-start gap-6 md:flex-row md:items-center">
               <Button
                 variant="secondary"
