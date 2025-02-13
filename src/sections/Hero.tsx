@@ -1,9 +1,15 @@
 "use client";
 
 import Image from "next/image";
-import { FC, useEffect } from "react";
+import { FC, useEffect, useRef } from "react";
 
-import { motion, stagger, useAnimate } from "motion/react";
+import {
+  motion,
+  stagger,
+  useAnimate,
+  useScroll,
+  useTransform,
+} from "motion/react";
 import SplitType from "split-type";
 
 /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
@@ -12,6 +18,18 @@ import Button from "@/components/Button";
 
 const Hero: FC = () => {
   const [titleScope, titleAnimate] = useAnimate();
+  const scrollingDiv = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: scrollingDiv,
+    offset: ["start end", "end end"],
+  });
+
+  const portraintWidth = useTransform(
+    scrollYProgress,
+    [0, 1],
+    ["100%", "240%"]
+  );
+
   useEffect(() => {
     new SplitType(titleScope.current, {
       types: "lines,words",
@@ -24,11 +42,11 @@ const Hero: FC = () => {
       },
       { duration: 0.5, delay: stagger(0.2) }
     );
-  }, []);
+  }, [titleAnimate, titleScope]);
 
   return (
     <section>
-      <div className="grid items-stretch md:h-screen md:grid-cols-12">
+      <div className="sticky top-0 grid items-stretch md:h-screen md:grid-cols-12">
         <div className="flex flex-col justify-center md:col-span-7">
           <div className="container !max-w-full">
             <motion.h1
@@ -95,16 +113,20 @@ const Hero: FC = () => {
             </div>
           </div>
         </div>
-        <div className="md:col-span-5">
-          <div className="mt-20 md:mt-0 md:h-full">
+        <div className="relative md:col-span-5">
+          <motion.div
+            className="mt-20 max-md:!w-full md:absolute md:right-0 md:mt-0 md:size-full"
+            style={{ width: portraintWidth }}
+          >
             <Image
               src={heroImage}
               alt="My portait"
               className="size-full object-cover"
             />
-          </div>
+          </motion.div>
         </div>
       </div>
+      <div ref={scrollingDiv} className="h-[200vh]"></div>
     </section>
   );
 };
